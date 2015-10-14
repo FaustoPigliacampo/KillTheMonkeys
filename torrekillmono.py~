@@ -33,7 +33,7 @@ torreta = pilas.actores.Torreta(enemigos=monos, cuando_elimina_enemigo=mono_dest
 
 def morir(monos, torreta):
     torreta.eliminar()
-    texto_muerte = pilas.actores.Texto("Fin del Juego")
+    texto_muerte = pilas.actores.Texto()
     texto_muerte.color = pilas.colores.gris
     texto_muerte.escala = 2
 
