@@ -16,7 +16,7 @@ puntos.magnitud = 40
 pilas.actores.Sonido()
 
 # Variables y Constantes
-balas_simples = pilas.actores.Bala()
+balas_simples = pilas.actores.Pingu()
 monos = []
 
 # Funciones
@@ -31,11 +31,16 @@ def mono_destruido(monos, balas_simples):
 torreta = pilas.actores.Torreta(enemigos=monos, cuando_elimina_enemigo=mono_destruido)
 
 
-def morir(monos, torreta):
+def morir(mono, torreta):
+    global fin_del_juego, monos, agregar_mono
+    agregar_mono.terminar()
     torreta.eliminar()
-    texto_muerte = pilas.actores.Texto()
-    texto_muerte.color = pilas.colores.gris
+    texto_muerte = pilas.actores.Texto("Fin del Juego")
+    texto_muerte.color = pilas.colores.amarillo
     texto_muerte.escala = 2
+    texto_muerte.y = -60
+    pilas.avisar("Conseguiste %d puntos" %(puntos.obtener()))
+    mono.eliminar()
 
 pilas.colisiones.agregar(monos, torreta, morir)
 
@@ -84,7 +89,7 @@ def crear_mono():
 
 
 
-pilas.tareas.agregar(1, crear_mono)
+agregar_mono = pilas.tareas.agregar(1, crear_mono)
 #pilas.mundo.agregar_tarea(1, crear_mono) <-- sintaxis vieja
 
 
